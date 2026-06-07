@@ -12,13 +12,13 @@ const res = {
     }
 }
 import { Response } from "express";
-export interface PaginationMeta{
+export interface PaginationMeta {
     page: number;
     limit: number;
     total: number;
 }
 
-export interface ApiResponse<T>{
+export interface ApiResponse<T> {
     status: number;
     success: boolean;
     message: string;

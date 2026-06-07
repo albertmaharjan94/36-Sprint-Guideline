@@ -20,7 +20,6 @@ app.use(morgan("combined")); // log all requests
 
 app.use("/api/v1/auth", userRoutes); // user related routes
 
-
 // global api handler (at the last)
 app.use(
     (req: Request, res: Response) => {
@@ -31,13 +30,13 @@ app.use(
 app.use(
     (err: Error, req: Request, res: Response, next: NextFunction) => {
         console.error("Error:", err);
-        if(err instanceof HttpException){
+        if (err instanceof HttpException) {
             return ApiResponseHelper.error(
                 res, err.message, err.status
             );
         }
         return ApiResponseHelper.error(
-            res, "Internal Server Error", 500
+            res, err?.message || "Internal Server Error", 500
         );
     }
 )
