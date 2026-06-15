@@ -1,5 +1,5 @@
 "use server"; // server side api call
-import { register, login } from "@/lib/api/auth";
+import { register, login, whoami, updateProfile } from "@/lib/api/auth";
 import { LoginFormData, RegisterFormData } from "@/app/(auth)/_components/schema";
 import { setTokenCookie, storeUserData } from "@/lib/cookies";
 
@@ -33,5 +33,33 @@ export const handleLoginUser = async (data: LoginFormData) => {
         }
     }catch (error: Error | any){
         return { success: false, message: error?.message || 'Login failed' };    
+    }
+}
+
+export const handleUserDetails = async () => {
+    try{
+        const result = await whoami();
+        if(result.success){
+            return { success: true, message: result.message, data: result.data }; 
+        }
+        else{ 
+            return { success: false, message: result.message || 'Failed to fetch user details' };
+        }
+    }catch (error: Error | any){
+        return { success: false, message: error?.message || 'Failed to fetch user details' };
+    }
+}
+
+export const handleUpdateProfile = async (formData: FormData) => {
+    try {
+        const result = await updateProfile(formData);
+        if(result.success) {
+            return { success: true, message: result.message, data: result.data };
+        }
+        else {
+            return { success: false, message: result.message || 'Failed to update profile' };
+        }
+    } catch (error: Error | any) {
+        return { success: false, message: error?.message || 'Failed to update profile' };
     }
 }

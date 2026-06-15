@@ -3,7 +3,7 @@ import { HttpException } from "./exceptions/http-exception";
 import { ApiResponseHelper } from "./utils/apihelper.util";
 import cors from "cors";
 import morgan from "morgan";
-
+import path from "path";
 // routes
 import userRoutes from "./routes/user.route";
 
@@ -18,6 +18,7 @@ app.use(express.json()); // json input
 app.use(express.urlencoded({ extended: true })); // x-www-form-urlencoded
 app.use(morgan("combined")); // log all requests
 
+app.use("/uploads", express.static(path.join(__dirname, "../uploads"))); // serve static files from uploads folder
 app.use("/api/v1/auth", userRoutes); // user related routes
 
 // global api handler (at the last)
