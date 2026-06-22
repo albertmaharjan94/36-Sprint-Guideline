@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/lib/contexts/AuthContext";
+import { Bounce, ToastContainer } from "react-toastify";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -32,6 +33,7 @@ export default function RootLayout({
       <AuthProvider>
         <body className="min-h-full flex flex-col bg-canvas text-body">
           {children}
+          <ToastContainer  position="top-right" autoClose={3000} pauseOnFocusLoss transition={Bounce}/>
         </body>
       </AuthProvider>
     </html>

@@ -1,4 +1,4 @@
-import UpdateForm from "./_components/UpdateForm";
+import UpdateForm from "../_components/UpdateForm";
 import { handleUserDetails } from "@/lib/actions/auth-action";
 export default async function Page() {
     const userDetails = await handleUserDetails();

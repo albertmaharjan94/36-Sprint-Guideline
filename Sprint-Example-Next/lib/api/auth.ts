@@ -48,3 +48,14 @@ export const updateProfile = async (data: any) => {
             || 'Failed to update profile');
     }
 }
+
+export const updatePassword = async (data: any) => {
+    try {
+        const response = await axiosInstance.put(API.AUTH.UPDATE_PASSWORD, data);
+        return response.data; // reponse ko body
+    }
+    catch (error: Error | any) {
+        throw new Error(error?.response?.data?.message
+            || 'Failed to update password');
+    }
+}

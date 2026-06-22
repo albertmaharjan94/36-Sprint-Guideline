@@ -4,7 +4,7 @@ import { getUserData } from "@/lib/cookies";
 export default async function DashboardPage() {
     const user = await getUserData();
     const name =
-        user?.firstName || user?.username || user?.name || user?.email || "Driver";
+        user?.firstName || user?.username || user?.name || user?.email || "User";
 
     return (
         <section className="mx-auto w-full max-w-[1440px] px-6 py-16">

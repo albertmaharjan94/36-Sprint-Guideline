@@ -31,7 +31,7 @@ export async function proxy(request: NextRequest) {
 export const config = {
     matcher: [
         "/register", // which path to apply
-        "/dashboard",
+        "/dashboard/:path*", // match all dashboard routes
         "/login",
         "/admin/:path*", // match all admin routes 
     ]
