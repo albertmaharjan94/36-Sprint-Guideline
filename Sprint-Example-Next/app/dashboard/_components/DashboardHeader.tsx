@@ -1,8 +1,9 @@
 "use client";
-
 import { handleLogout } from "@/lib/actions/auth-action";
+import { useAuth } from "@/lib/contexts/AuthContext";
 
 export default function DashboardHeader() {
+    const { user } = useAuth();
     return (
         <div className="flex items-center gap-4 justify-between">
             <a href="/dashboard" className="text-2xl font-bold uppercase leading-none tracking-tight text-on-dark">
@@ -18,6 +19,13 @@ export default function DashboardHeader() {
                 <a href="/dashboard/password" className="text-sm font-medium text-muted hover:text-on-dark">
                     Password
                 </a>
+                {
+                    user?.role === "admin" && (
+                        <a href="/admin" className="text-sm font-medium text-muted hover:text-on-dark">
+                            Admin
+                        </a>
+                    )
+                }
                 <button className="text-sm font-medium text-muted hover:text-on-dark" onClick={async () => {
                     await handleLogout();
                 }}>

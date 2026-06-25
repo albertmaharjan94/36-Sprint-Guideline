@@ -15,7 +15,7 @@ const UserMongoSchema: Schema = new Schema<IUser>(
         username: { type: String, required: true, unique: true },
         password: { type: String, required: true },
         role: { type: String, enum: ["admin", "user"], default: "user" },
-        profileImage: { type: String, required: false }
+        imageUrl: { type: String, required: false }
     },
     {
         timestamps: true // createdAt and updatedAt will be automatically added and managed by mongoose

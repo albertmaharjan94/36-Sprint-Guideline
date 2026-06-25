@@ -19,4 +19,9 @@ userRouter.put("/update",
     userController.updateUser
 );
 
+userRouter.put("/update-password",
+    authorizedMiddleware, // handle authentication and set req.user
+    userController.updatePassword
+);
+
 export default userRouter;
